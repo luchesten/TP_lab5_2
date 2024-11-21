@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<h2>Adicionar nota</h2>
+
+<form >
+    <label for="code">Code:</label><br>
+    <input type="text" id="code" name="code" value=""><br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value=""><br><br>
+
+    <input type="button" value="Guardar" class="btn btn-primary" onclick="add();">
+</form>
+
+
+
+<a href="../index.html" class="link-secondary">Volver al inicio</a>
+
+</body>
+</html>
+
+
+<script>
+    function add(){
+
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open( "POST", "http://localhost:8080/videos", true );
+
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        var code = document.getElementById("code");
+        var title = document.getElementById("title");
+
+        var newVideo = {
+            "code": code.value,
+            "title": title.value
+        }
+
+        console.log("Adding video:" + JSON.stringify(newVideo));
+
+        xmlhttp.send(JSON.stringify(newVideo));
+    }
+</script>
